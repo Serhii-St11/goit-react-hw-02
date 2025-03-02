@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import styles from "./Variants.module.css";
-const Variants = ({ updateFeedback, resetFeedback, hasFeedback }) => {
+import styles from "./Options.module.css";
+const Options = ({ updateFeedback, resetFeedback, hasFeedback }) => {
   return (
     <div className={clsx(styles.container)}>
       <button
@@ -30,4 +30,4 @@ const Variants = ({ updateFeedback, resetFeedback, hasFeedback }) => {
   );
 };
 
-export default Variants;
+export default Options;

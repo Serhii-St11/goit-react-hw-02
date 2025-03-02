@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Description from "./components/description/Description";
-import Variants from "./components/variants/Variants";
-import Feedback from "./components/feetdback/Feetdback";
+import Options from "./components/options/Options";
+import Feedback from "./components/feetdback/Feedback";
+import Notification from "./components/notification/Notification";
 import "./App.css";
 
 export default function App() {
@@ -17,7 +18,10 @@ export default function App() {
   }, [feedback]);
 
   const updateFeedback = (key) => {
-    setFeedback({ ...feedback, [key]: feedback[key] + 1 });
+    setFeedback((prev) => ({
+      ...prev,
+      [key]: prev[key] + 1,
+    }));
   };
 
   const resetFeedback = () => {
@@ -28,25 +32,30 @@ export default function App() {
     });
   };
 
-  const hasFeedback =
-    feedback.good > 0 || feedback.neutral > 0 || feedback.bad > 0;
+  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+
+  const positivePercentage =
+    totalFeedback > 0 ? Math.round((feedback.good / totalFeedback) * 100) : 0;
 
   return (
-    <>
-      <div>
-        <Description />
-        <Variants
-          updateFeedback={updateFeedback}
-          resetFeedback={resetFeedback}
-          hasFeedback={hasFeedback}
-        />
+    <div>
+      <Description />
+      <Options
+        updateFeedback={updateFeedback}
+        resetFeedback={resetFeedback}
+        hasFeedback={totalFeedback > 0}
+      />
+      {totalFeedback > 0 ? (
         <Feedback
           good={feedback.good}
           neutral={feedback.neutral}
           bad={feedback.bad}
-          hasFeedback={hasFeedback}
+          totalFeedback={totalFeedback}
+          positivePercentage={positivePercentage}
         />
-      </div>
-    </>
+      ) : (
+        <Notification/>
+      )}
+    </div>
   );
 }
