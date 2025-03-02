@@ -1,0 +1,18 @@
+.feedback_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding: 5px 0;
+    margin: 10px 0;
+    align-items: flex-start;
+}
+
+.feedback_item {
+color: black;
+}
+
+.feedback_text {
+   color: black; 
+   font-size: 18px;
+}

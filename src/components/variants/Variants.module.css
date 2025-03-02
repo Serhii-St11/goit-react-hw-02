@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    background-color: #fff;
+    color: black;
+    border: solid 1px black;
+}
